@@ -46,7 +46,7 @@ router.put('/:id', async(req, res)=>{
     cart: req.body.cart
    }, async(err, docs) => {
     if (err) {
-      console.log(err);
+      res.send(err);
     } else {
      const products = await Product.find();
      let product = products.find((pro)=> pro._id == id)

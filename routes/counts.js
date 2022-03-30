@@ -25,4 +25,30 @@ router.post('/', async (req, res)=>{
     }
 })
 
-router.get('/:id', asyn
+router.get('/:id', async(req, res)=>{
+    try {
+        const count = await Count.findById(req.params.id)
+        res.send(count)
+    } catch (error) {
+        res.send('error ocurred', error)
+    }
+})
+
+router.delete('/:id', async(req, res)=>{
+const id = req.params.id
+Count.findByIdAndUpdate(id, {
+    cart: req.params.cart,
+    wish: req.params.wish,
+    payment: req.params.payment
+},  async(err, docs) => {
+    if (err) {
+      res.send(err);
+    } else {
+     const counts = await Count.find();
+     let count = counts.find((pro)=> pro._id == id)
+      res.send(count)
+    }
+})
+})    
+
+module.exports = router
