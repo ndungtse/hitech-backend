@@ -2,14 +2,23 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+var timeout = require('connect-timeout')
+
 require('dotenv/config');
+
 const cors = require('cors')
 
+app.use(timeout('60s'))
+app.use(haltOnTimedout)
 app.use(bodyParser.json())
 app.use(cors({
   origin: "*",
 })
 )
+
+function haltOnTimedout (req, res, next) {
+  if (!req.timedout) next()
+}
 
 const postsRoutes = require('./routes/products')
 const userRoutes = require('./routes/userRoutes')
