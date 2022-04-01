@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
+// eslint-disable-next-line new-cap
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -15,4 +16,4 @@ const userSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model("user", userSchema);
