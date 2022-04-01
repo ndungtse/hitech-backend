@@ -24,7 +24,7 @@ const countRoutes = require("./routes/counts");
 app.use("/user", userRoutes);
 app.use("/counts", countRoutes);
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     try{
         const products = await Product.find();
         res.send(products)
