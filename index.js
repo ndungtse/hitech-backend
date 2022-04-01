@@ -25,12 +25,18 @@ app.use("/user", userRoutes);
 app.use("/counts", countRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to hitech-backend 2");
+    try{
+        const products = await Product.find();
+        res.send(products)
+      }catch (error){
+        res.json({ message: "error occured"})
+      }
 });
 
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () =>
   console.log("connected to DB")
 );
+console.log("Database_URL", process.env.DB_CONNECTION);
 
 //products route
 app.get('/products', async (req, res) => {

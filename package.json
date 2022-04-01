@@ -1,8 +1,12 @@
 {
-  "name": "server",
+  "name": "hitech-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend for hitech",
   "main": "index.js",
+  "engines": {
+    "node": "16.14.2",
+    "npm": "8.5.0"
+  },
   "scripts": {
     "start": "nodemon index.js"
   },
