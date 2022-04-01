@@ -28,10 +28,10 @@ app.get("/", (req, res) => {
   res.send("Welcome to hitech-backend 2");
 });
 
-mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () =>
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true}, () =>
   console.log("connected to DB")
 );
-console.log("Database_URL", process.env.DB_CONNECTION);
+console.log("Database_URL", process.env.MONGODB_URL);
 
 //products route
 app.get('/products', async (req, res) => {
