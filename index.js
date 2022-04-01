@@ -24,13 +24,8 @@ const countRoutes = require("./routes/counts");
 app.use("/user", userRoutes);
 app.use("/counts", countRoutes);
 
-app.get("/", async (req, res) => {
-    try{
-        const products = await Product.find();
-        res.send(products)
-      }catch (error){
-        res.json({ message: "error occured"})
-      }
+app.get("/", (req, res) => {
+  res.send("Welcome to hitech-backend 2");
 });
 
 mongoose.connect(process.env.DB_CONNECTION, {useNewUrlParser: true}, () =>
