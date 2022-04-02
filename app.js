@@ -15,11 +15,9 @@ app.use(cors({
 
 const postsRoutes = require("./routes/products");
 const userRoutes = require("./routes/userRoutes");
-const countRoutes = require("./routes/counts");
 
 app.use("/products", postsRoutes);
 app.use("/user", userRoutes);
-app.use("/counts", countRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to hitech-backend");

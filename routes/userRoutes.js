@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router()
 const User = require('../models/userModel');
+
+
+const countRoutes = require("./counts");
+router.use('/counts', countRoutes)
+
 router.get('/', async(req, res) => {
     try {
         const users = await User.find()
@@ -21,7 +26,7 @@ router.post('/', async(req, res)=>{
         const savedUser = await user.save()
         res.send(savedUser)
     } catch (error) {
-        res.send('error ocurred', error)
+        res.status(500).send('error ocurred')
     }
 })
 module.exports = router
