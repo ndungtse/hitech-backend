@@ -10,18 +10,16 @@ router.get('/', async (req, res) => {
     res.json({ message: "error occured"})
   }
 })
+
 router.post("/", async (req, res) => {
-  const product = new Product({
-    cartcount: req.body.cartcount,
-    name: req.body.name,
-    category: req.body.category,
-    price: req.body.price,
-  });
+  const {name, category, price } = req.body;
+  const newProduct = new Product({name, category, price })
+  
   try{
-    const savedProduct = await product.save();
-    res.json(savedProduct);
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
   }catch (error){
-    res.json({ message: "error occured" });
+    res.status(409).json({ message: error.message });
   }
 
 });
