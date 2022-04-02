@@ -1,46 +1,48 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-// eslint-disable-next-line new-cap
 const ProductSchema = mongoose.Schema([
-  {
-    cartcount: {
-      type: Number,
+    {
+        cartcount: {
+            type: Number
+        },
+        wishcount: {
+            type: Number
+        }
     },
-    wishcount: {
-      type: Number,
-    },
-  },
-  {
+    {
     name: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
     price: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
     },
     category: {
-      type: String,
-      required: true,
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
     },
     cart: {
-      type: Boolean,
-      default: false,
+        type: Boolean,
+        default: false
     },
     image: {
-      type: String,
-      default: "https://icon-library.com/images/icon-for-product/icon-for-product-23.jpg",
+        type: String,
+        default: 'https://icon-library.com/images/icon-for-product/icon-for-product-23.jpg'
     },
     wish: {
-      type: Boolean,
-      default: false,
+        type: Boolean,
+        default: false
     },
     date: {
-      type: Date,
-      default: Date.now,
-    },
-  }]);
+        type: Date,
+        default: Date.now
+    }    
+}]);
 
-module.exports = mongoose.model("Product", ProductSchema);
+module.exports = mongoose.model('Product', ProductSchema);
 
 
