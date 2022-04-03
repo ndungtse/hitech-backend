@@ -1,32 +1,31 @@
-const express = require('express');
-const router = express.Router()
-const User = require('../models/userModel');
-
+const express = require("express");
+const router = express.Router();
+const User = require("../models/userModel");
 
 const countRoutes = require("./counts");
-router.use('/counts', countRoutes)
+router.use("/counts", countRoutes);
 
-router.get('/', async(req, res) => {
-    try {
-        const users = await User.find()
-        res.send(users)
-    } catch (error) {
-        res.status.send('error ocurred')
-    }
-})
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(201).json(users);
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+});
 
-router.post('/', async(req, res)=>{
-  
-    const user = new User({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.passowrd
-    });
-    try {
-        const savedUser = await user.save()
-        res.send(savedUser)
-    } catch (error) {
-        res.status(500).send('error ocurred')
-    }
-})
-module.exports = router
+router.post("/", async (req, res) => {
+  const { username, email, password } = req.body;
+  const newUser = new User({
+    username,
+    email,
+    password,
+  });
+  try {
+    await newUser.save();
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+});
+module.exports = router;
