@@ -17,7 +17,7 @@ router.get('/:id', async (req, res)=>{
        const counts  = await Count.find(req.params._id)
        res.send(counts)
    } catch (error) {
-       res.send("error ocurred")
+       res.send("err ocurred")
    }
 })
 
