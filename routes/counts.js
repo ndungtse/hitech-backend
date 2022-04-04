@@ -12,6 +12,14 @@ router.get('/', async (req, res)=>{
        res.send("error ocurred")
    }
 })
+router.get('/:id', async (req, res)=>{
+   try {
+       const counts  = await Count.find(req.params.id)
+       res.send(counts)
+   } catch (error) {
+       res.send("error ocurred")
+   }
+})
 
 
 router.post('/', async (req, res)=>{
