@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../models/userModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const { regvalidation, logvalidation } = require("../validtion");
+const { regvalidation, logvalidation } = require("../valids/validation");
 
 const countRoutes = require("./counts");
 router.use("/counts", countRoutes);
