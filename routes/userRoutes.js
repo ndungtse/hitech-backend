@@ -5,6 +5,10 @@ const User = require("../models/userModel");
 const countRoutes = require("./counts");
 router.use("/counts", countRoutes);
 
+const cartRoute = require("./oncart");
+router.use("/cart", cartRoute);
+
+
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
