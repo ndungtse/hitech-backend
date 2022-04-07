@@ -1,12 +1,20 @@
 const express = require("express");
 const mongoose = require('mongoose')
-
+const Product = require("../models/productModel");
 const router = express.Router();
 const Count = require('../models/countModel');
 
 router.get('/', async (req, res)=>{
    try {
        const counts  = await Count.find()
+       let arr = [];
+       const products = await Product.find();
+       const cart = products.filter((c) => c.cart === true);
+         let pay = 0;
+         for (let i = 0; i < cart.length; i++) {
+           pay += cart[i].price;
+         }
+        counts[0].payment = pay 
        res.send(counts)
    } catch (error) {
        res.send("error ocurred")

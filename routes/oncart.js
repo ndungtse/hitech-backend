@@ -7,6 +7,7 @@ router.get('/', async(req, res)=>{
         let arr = []
         const products = await Product.find()
         const cart = products.filter((c) => c.cart === true)
+        
         if (Array.isArray(cart)) {
             res.status(200).send(cart)
         } else {
