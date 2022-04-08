@@ -11,6 +11,8 @@ router.use("/counts", countRoutes);
 const cartRoute = require("./oncart");
 router.use("/cart", cartRoute);
 
+const wishRoute = require("./onwish");
+router.use("/wish", wishRoute);
 
 router.get("/", async (req, res) => {
   try {
@@ -20,8 +22,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({message: error.message});
   }
 });
-
-
 
 router.post("/register", async (req, res) => {
   const {error} = regvalidation(req.body);
