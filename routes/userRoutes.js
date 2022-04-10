@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require("../models/userModel");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const { regvalidation, logvalidation } = require("../valids/validation");
 
 const countRoutes = require("./counts");
 router.use("/counts", countRoutes);
@@ -24,9 +23,6 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-  const {error} = regvalidation(req.body);
-  if(error)  res.status(400).send(error.details[0].message);
-
   const emailExist = await User.findOne({ email: req.body.email });
   const usernameExist = await User.findOne({ username: req.body.username });
 
@@ -52,9 +48,6 @@ router.post("/register", async (req, res) => {
 });
 
 router.post('/login', async (req, res)=>{
-  const { error } = logvalidation(req.body);
-  if (error) res.status(400).send(error.details[0].message);
-
   const user = await User.findOne({ username: req.body.username });
   if(!user) res.status(400).send('No user found');
 
