@@ -53,10 +53,12 @@ router.post('/login', async (req, res)=>{
   const user = await User.findOne({ username: req.body.username });
   if(!user) res.status(400).send('No user found');
 
+  console.log(req.body.password);
   const validPass = await bcrypt.compare(req.body.password, user.password); 
   if(!validPass) return res.status(400).send('Invalid password')
 
   const token = jwt.sign({_id: user._id}, process.env.LOG_TOKEN)
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("auth-token", token).send(token);
 
 

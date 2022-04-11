@@ -27,7 +27,7 @@ app.use(cors(corsOptions)); */
 
 app.use(cors({
   origin: "*",
-  methods: "GET, POST"
+  methods: "GET, POST, PUT"
 }))
 
 const postsRoutes = require("./routes/products");
