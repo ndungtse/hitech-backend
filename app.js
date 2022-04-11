@@ -8,7 +8,12 @@ const cors = require("cors");
 
 app.use(bodyParser.json());
 
-var whitelist = ["https://hitech1.herokuapp.com", "http://localhost:4040"];
+/* var whitelist = [
+  "https://hitech1.herokuapp.com",
+  "http://localhost:4040",
+  "http://localhost:8080",
+  "https://hitech1.vercel.app/",
+];
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -18,8 +23,12 @@ var corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
+app.use(cors(corsOptions)); */
 
+app.use(cors({
+  origin: "*",
+  methods: "GET, POST"
+}))
 
 const postsRoutes = require("./routes/products");
 const userRoutes = require("./routes/userRoutes");
@@ -27,7 +36,7 @@ const userRoutes = require("./routes/userRoutes");
 app.use("/products", postsRoutes);
 app.use("/user", userRoutes);
 
-app.get("/", cors(corsOptions), (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to hitech-backend");
 });
 
