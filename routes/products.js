@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel')
-const upload = require('../middlewares/upload')
+// const upload = require('../middlewares/upload')
 
 router.get('/', async (req, res) => {
   try{
@@ -13,8 +13,8 @@ router.get('/', async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-  const {name, category, price, image } = req.body;
-  const newProduct = new Product({name, category, price,image })
+  const {name, category, price, image, owner, description } = req.body;
+  const newProduct = new Product({name, category, price,image, owner, description })
   
   try{
     const savedProduct = await newProduct.save();
