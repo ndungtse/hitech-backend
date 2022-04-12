@@ -25,6 +25,9 @@ const ProductSchema = mongoose.Schema([
     description: {
         type: String,
     },
+    owner: {
+        type: String,
+    },
     cart: {
         type: Boolean,
         default: false
