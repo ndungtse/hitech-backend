@@ -42,7 +42,8 @@ router.put('/:id', async(req, res)=>{
     category: req.body.category,
     image: req.body.image,
     wish: req.body.wish,
-    cart: req.body.cart
+    cart: req.body.cart,
+    quantity: req.body.quantity
    }, async(err, docs) => {
     if (err) {
       res.send(err);
@@ -51,7 +52,6 @@ router.put('/:id', async(req, res)=>{
      let product = products.find((pro)=> pro._id == id)
       res.send(product)
     }
-    
   });
 
   router.delete('/:id', (req, res)=>{
