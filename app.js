@@ -21,7 +21,7 @@ app.use("/products", postsRoutes);
 app.use("/user", userRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to hitech-backend");
+  res.send("Welcome to hitech-backend!!!");
 });
 
 
