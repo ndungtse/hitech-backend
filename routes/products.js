@@ -43,6 +43,7 @@ router.put('/:id', async(req, res)=>{
     image: req.body.image,
     wish: req.body.wish,
     cart: req.body.cart,
+    owner: req.body.owner,
     quantity: req.body.quantity
    }, async(err, docs) => {
     if (err) {
