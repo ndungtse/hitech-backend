@@ -12,7 +12,7 @@ router.get('/', async (req, res)=>{
        const cart = products.filter((c) => c.cart === true);
          let pay = 0;
          for (let i = 0; i < cart.length; i++) {
-           pay += cart[i].price;
+           pay += cart[i].price*cart[i].quantity;
          }
         counts[0].payment = pay 
        res.send(counts)
