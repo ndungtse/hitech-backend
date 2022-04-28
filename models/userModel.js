@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
   username: {
@@ -7,28 +7,26 @@ const userSchema = mongoose.Schema({
   },
   picture: {
     type: String,
-    default: 'https://img.icons8.com/ios-glyphs/60/user--v1.png'
+    default: "https://img.icons8.com/ios-glyphs/60/user--v1.png",
   },
   messages: {
-    type: Array
+    type: Array,
   },
-  role:{
+  role: {
     type: String,
   },
   orders: {
-    type: Array
+    type: Array,
   },
   email: {
     type: String,
     required: true,
   },
-  specifics: {
-    products: {
-      type: Array,
-    },
-    counts: {
-      type: Object,
-    },
+  products: {
+    type: Array,
+  },
+  counts: {
+    type: Array,
   },
   password: {
     type: String,
@@ -36,4 +34,4 @@ const userSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('user', userSchema)
+module.exports = mongoose.model("user", userSchema);
