@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel')
-// const upload = require('../middlewares/upload')
+const verify = require('../middlewares/verToken')
 
 router.get('/', async (req, res) => {
   try{

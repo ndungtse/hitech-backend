@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv/config");
+const verify = require('./middlewares/verToken')
 
 const cors = require("cors");
 
@@ -14,6 +15,10 @@ app.use(
     methods: "GET, POST, PUT",
   })
 );
+
+app.get('/auth', verify, (req, res)=>{
+  res.json({message: 'you are authenticated'})
+})
 
 const postsRoutes = require("./routes/products");
 const userRoutes = require("./routes/userRoutes");
