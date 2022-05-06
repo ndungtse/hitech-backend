@@ -76,7 +76,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { _id: user._id, name: user.username },
-      process.env.LOG_TOKEN
+      process.env.LOG_TOKEN, {expiresIn: '3d'}
     );
     // res.header("Access-Control-Allow-Origin", "*");
     res.cookie("auth-token", token).send(token);
