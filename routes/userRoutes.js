@@ -17,7 +17,16 @@ router.use("/wish", wishRoute);
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
-    res.status(201).json(users);
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.get("/:id", async (req, res) => {
+  const id = req.params.id
+  try {
+    const user = await User.findById(id);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -80,4 +89,51 @@ router.post("/login", async (req, res) => {
     }
   }
 });
+
+router.get('/:id/products', async(req, res)=>{
+  const id = req.params.id
+  try {
+    const user = await User.findById(id);
+    const products = await user.products;
+    res.status(200).send(products)
+  } catch (error) {
+    res.status(404).json({message: 'No products found'})
+  }
+})
+
+router.get('/:id/counts', async(req, res)=>{
+  const id = req.params.id
+  try {
+    const user = await User.findById(id);
+    const counts = await user.counts;
+    const products = await user.products;
+    const cart = products.filter((c) => c.cart === true);
+    let pay = 0;
+    for (let i = 0; i < cart.length; i++) {
+      pay += cart[i].price * cart[i].quantity;
+    }
+    counts[0].payment = pay; 
+    res.status(200).send(counts)
+  } catch (error) {
+    res.status(404).json({message: 'No counts found'})
+  }
+})
+
+router.put('/:id/newUpdates', (req, res)=>{
+  const id = req.params.id
+  const { products, counts}= req.body
+  User.findByIdAndUpdate(id, {
+    products: products,
+    counts: counts
+  },async(err, docs) => {
+    if (err) {
+      res.send(err);
+    } else {
+     const user = await User.find();
+     let upUser = user.find((pro)=> pro._id == id)
+      res.send(upUser)
+    }
+    })
+})
+
 module.exports = router;

@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router()
-const Product = require("../models/productModel");
+const User = require("../models/userModel");
 
-router.get('/', async(req, res)=>{
+router.get('/:id', async(req, res)=>{
+    const id = req.params.id
     try {
         let arr = []
-        const products = await Product.find()
+        const user = await User.findById(id)
+        const products = await user.products
         const cart = products.filter((c) => c.cart === true)
         
         if (Array.isArray(cart)) {

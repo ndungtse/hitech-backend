@@ -27,6 +27,7 @@ const userSchema = mongoose.Schema({
   },
   counts: {
     type: Array,
+    default: [{cart: 0, wish: 0, payment: 0}]
   },
   password: {
     type: String,
