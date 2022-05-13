@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
 const verify = require('../middlewares/verToken')
+const Order = require('../models/orderModel')
 
 router.post("/", verify, async (req, res) => {
   const newOrder = new Order(req.body);
