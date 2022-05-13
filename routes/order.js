@@ -3,7 +3,7 @@ const router = express.Router()
 const verify = require('../middlewares/verToken')
 const Order = require('../models/orderModel')
 
-router.post("/", verify, async (req, res) => {
+router.post("/newOrder", verify, async (req, res) => {
   const newOrder = new Order(req.body);
   try {
     const savedOrder = await newOrder.save();
@@ -12,6 +12,15 @@ router.post("/", verify, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get('/',async(req, res)=>{
+  try {
+    const orders = await Order.find()
+    res.status(200).send(orders)
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
 
 /* 
 router.put("/:id", verifyAndAdmin, async (req, res) => {
@@ -37,8 +46,8 @@ router.delete("/:id", verifyAndAdmin, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-router.get("/find/:userId", verifyAndAuthorization, async (req, res) => {
+*/
+router.get("/find/:userId", verify, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId });
     res.status(200).json(orders);
@@ -46,6 +55,6 @@ router.get("/find/:userId", verifyAndAuthorization, async (req, res) => {
     res.status(500).json(err);
   }
 });
- */
+
 
 module.exports = router
