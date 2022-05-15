@@ -80,7 +80,7 @@ router.post("/login", async (req, res) => {
       if (!validPass) return res.status(400).json({message: "Invalid password"});
 
       const token = jwt.sign(
-        { _id: user._id, name: user.username },
+        { _id: user._id, name: user.username, picture: user.picture },
         process.env.LOG_TOKEN,
         { expiresIn: "3d" }
       );
@@ -116,6 +116,17 @@ router.get('/:id/counts', async(req, res)=>{
     res.status(200).send(counts)
   } catch (error) {
     res.status(404).json({message: 'No counts found'})
+  }
+})
+
+router.put('/:id', async(req, res)=>{
+  const id=req.params.id
+  console.log(req.body);
+  try {
+    const user = await User.findByIdAndUpdate(id, {picture: req.body.picture})
+    res.status(201).send(user)
+  } catch (error) {
+    res.status(500).send(error)
   }
 })
 
