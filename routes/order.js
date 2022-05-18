@@ -24,7 +24,7 @@ router.get('/',async(req, res)=>{
 router.get('/:id',async(req, res)=>{
   const id = req.params.id
   try {
-    const orders = await Order.find({_id: id})
+    const orders = await Order.find({userId: id})
     res.status(200).send(orders)
   } catch (error) {
     res.status(500).json(error);

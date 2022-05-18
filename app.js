@@ -26,7 +26,7 @@ const order = require("./routes/order");
 
 app.use("/products", postsRoutes);
 app.use("/user", userRoutes);
-app.use("/order", order);
+app.use("/orders", order);
 
 app.get("/", (req, res) => {
   res.send("Welcome to hitech-backend!!!");
