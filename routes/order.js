@@ -21,6 +21,15 @@ router.get('/',async(req, res)=>{
     res.status(500).json(error);
   }
 })
+router.get('/:id',async(req, res)=>{
+  const id = req.params.id
+  try {
+    const orders = await Order.find({_id: id})
+    res.status(200).send(orders)
+  } catch (error) {
+    res.status(500).json(error);
+  }
+})
 
 /* 
 router.put("/:id", verifyAndAdmin, async (req, res) => {
