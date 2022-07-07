@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { registerSchema } = require('swaggiffy');
 
 const ProductSchema = mongoose.Schema([
     {
@@ -49,6 +50,8 @@ const ProductSchema = mongoose.Schema([
         default: Date.now
     }    
 }]);
+
+registerSchema('Product', ProductSchema, { orm: 'mongoose' });
 
 module.exports = mongoose.model('Product', ProductSchema);
 

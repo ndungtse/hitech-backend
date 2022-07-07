@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { registerSchema } = require('swaggiffy');
 
 const userSchema = mongoose.Schema({
   username: {
@@ -34,5 +35,7 @@ const userSchema = mongoose.Schema({
     required: true,
   },
 });
+
+registerSchema('User', userSchema, { orm: 'mongoose' });
 
 module.exports = mongoose.model("user", userSchema);

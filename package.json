@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon --ignore '*swagger.json' app.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "nodemon": "^2.0.15",
     "streamifier": "^0.1.1",
     "swagger-jsdoc": "^6.2.1",
-    "swagger-ui-express": "^4.4.0"
+    "swagger-ui-express": "^4.4.0",
+    "swaggiffy": "^1.0.5"
   }
 }

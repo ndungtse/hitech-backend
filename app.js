@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv/config");
 const verify = require('./middlewares/verToken')
+const { Swaggiffy } = require('swaggiffy')
 
 const cors = require("cors");
 
@@ -44,3 +45,5 @@ mongoose
     )
   )
   .catch((error) => console.log(`${error} did not connect`));
+
+  new Swaggiffy().setupExpress(app).swaggiffy()

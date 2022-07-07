@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel')
 const verify = require('../middlewares/verToken')
+const { registerDefinition } = require('swaggiffy');
 
 router.get('/', async (req, res) => {
   try{
@@ -67,5 +68,7 @@ router.put('/:id', async(req, res)=>{
   })
 
 })
+
+registerDefinition(router, {tags: 'Product', mappedSchema: 'Product', basePath: '/products'});
 
 module.exports = router;

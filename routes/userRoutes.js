@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { logvalidation, regvalidation } = require("../valids/validation");
+const { registerDefinition } = require('swaggiffy');
 
 const countRoutes = require("./counts");
 router.use("/counts", countRoutes);
@@ -146,5 +147,7 @@ router.put('/:id/newUpdates', (req, res)=>{
     }
     })
 })
+
+registerDefinition(router, {tags: 'User', mappedSchema: 'User', basePath: '/user'});
 
 module.exports = router;
