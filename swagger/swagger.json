@@ -654,7 +654,7 @@
           },
           "date": {
             "type": "string",
-            "example": "7/7/2022, 12:03:23 PM"
+            "example": "9/26/2022, 9:58:23 AM"
           },
           "_id": {
             "type": "string",
